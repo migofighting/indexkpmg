@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMG专业服务展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --kpmg-blue: #00338D;
+            --kpmg-light-blue: #0066CC;
+            --kpmg-white: #FFFFFF;
+            --kpmg-gray: #F5F7FA;
+            --kpmg-dark-gray: #333333;
+            --kpmg-accent: #FF6900;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--kpmg-white);
+            color: var(--kpmg-dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: var(--kpmg-blue);
+            color: var(--kpmg-white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 51, 141, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-left: 10px;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            color: var(--kpmg-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--kpmg-blue) 0%, var(--kpmg-light-blue) 100%);
+            color: var(--kpmg-white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* PPT展示区 */
+        .ppt-section {
+            padding: 80px 0;
+            background-color: var(--kpmg-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--kpmg-blue);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--kpmg-accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .ppt-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .ppt-item {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--kpmg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .ppt-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ppt-header {
+            background-color: var(--kpmg-blue);
+            color: var(--kpmg-white);
+            padding: 20px;
+            position: relative;
+        }
+        
+        .ppt-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .ppt-header .edit-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .ppt-header .edit-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .ppt-preview {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f4f8;
+            color: var(--kpmg-blue);
+            font-size: 4rem;
+        }
+        
+        .ppt-content {
+            padding: 25px;
+        }
+        
+        .ppt-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .upload-section {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .upload-btn {
+            background-color: var(--kpmg-light-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background-color: var(--kpmg-blue);
+        }
+        
+        /* 联系表单 */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--kpmg-white);
+        }
+        
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--kpmg-gray);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--kpmg-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--kpmg-light-blue);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background-color: var(--kpmg-blue);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: block;
+            margin: 30px auto 0;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--kpmg-light-blue);
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--kpmg-dark-gray);
+            color: var(--kpmg-white);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h4 {
+            color: var(--kpmg-white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--kpmg-white);
+        }
+        
+        .copyright {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .ppt-container {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                align-items: center;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
+        
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h3 {
+            color: var(--kpmg-blue);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            text-align: right;
+        }
+        
+        .save-btn {
+            background-color: var(--kpmg-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <!-- KPMG官方Logo -->
+                <svg class="logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40">
+                    <defs>
+                        <linearGradient id="kpmgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00338D;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0066CC;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="0" y="0" width="120" height="40" fill="url(#kpmgGradient)" rx="4"/>
+                    <text x="60" y="26" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="22">KPMG</text>
+                </svg>
+                <h1 style="display:none;">KPMG</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#services">服务展示</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>专业洞察，创造价值</h2>
+            <p>KPMG致力于为客户提供审计、税务和咨询服务，帮助企业在复杂商业环境中把握机遇，实现可持续增长。</p>
+            <p>探索我们最新的行业洞察和解决方案</p>
+        </div>
+    </section>
+
+    <!-- PPT展示区 -->
+    <section class="ppt-section" id="services">
+        <div class="container">
+            <h2 class="section-title">专业服务展示</h2>
+            <div class="ppt-container">
+                <!-- PPT项目1 -->
+                <div class="ppt-item">
+                    <div class="ppt-header">
+                        <h3 id="ppt-title-1">数字化转型战略</h3>
+                        <button class="edit-btn" onclick="openEditModal(1)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <div class="ppt-preview">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="ppt-content">
+                        <p>本演示介绍了KPMG如何帮助企业在数字化时代实现业务转型，包括技术整合、流程优化和人才培养等方面的解决方案。</p>
+                        <div class="upload-section">
+                            <button class="upload-btn" onclick="uploadPPT(1)">
+                                <i class="fas fa-cloud-upload-alt"></i> 上传/更新PPT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PPT项目2 -->
+                <div class="ppt-item">
+                    <div class="ppt-header">
+                        <h3 id="ppt-title-2">可持续发展报告</h3>
+                        <button class="edit-btn" onclick="openEditModal(2)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <div class="ppt-preview">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="ppt-content">
+                        <p>介绍KPMG在ESG（环境、社会和治理）报告方面的专业服务，帮助企业建立透明、可信的可持续发展报告体系。</p>
+                        <div class="upload-section">
+                            <button class="upload-btn" onclick="uploadPPT(2)">
+                                <i class="fas fa-cloud-upload-alt"></i> 上传/更新PPT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PPT项目3 -->
+                <div class="ppt-item">
+                    <div class="ppt-header">
+                        <h3 id="ppt-title-3">风险管理框架</h3>
+                        <button class="edit-btn" onclick="openEditModal(3)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <div class="ppt-preview">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="ppt-content">
+                        <p>展示KPMG全面的风险管理解决方案，帮助企业识别、评估和应对各类商业风险，确保业务持续稳定运营。</p>
+                        <div class="upload-section">
+                            <button class="upload-btn" onclick="uploadPPT(3)">
+                                <i class="fas fa-cloud-upload-alt"></i> 上传/更新PPT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系表单 -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">获取更多信息</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">姓名 *</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">公司名称 *</label>
+                        <input type="text" id="company" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">邮箱地址 *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">感兴趣的服务</label>
+                        <select id="interest" class="form-control">
+                            <option value="">请选择...</option>
+                            <option value="digital">数字化转型战略</option>
+                            <option value="sustainability">可持续发展报告</option>
+                            <option value="risk">风险管理框架</option>
+                            <option value="other">其他服务</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">留言信息</label>
+                        <textarea id="message" class="form-control" rows="5" placeholder="请告诉我们您的具体需求..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">提交信息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>KPMG</h4>
+                    <p>全球领先的专业服务机构，提供审计、税务和咨询服务。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#services">服务展示</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@kpmg.com</li>
+                        <li><i class="fas fa-phone"></i> +86 10 1234 5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市朝阳区建国门外大街1号</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 KPMG 版权所有。保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 编辑标题模态框 -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑PPT标题</h3>
+                <button class="close-modal" onclick="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalTitle">PPT标题</label>
+                    <input type="text" id="modalTitle" class="form-control">
+                    <input type="hidden" id="currentPptId">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="save-btn" onclick="saveTitle()">保存更改</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 当前编辑的PPT ID
+        let currentEditId = 0;
+        
+        // 打开编辑模态框
+        function openEditModal(pptId) {
+            currentEditId = pptId;
+            const currentTitle = document.getElementById(`ppt-title-${pptId}`).textContent;
+            document.getElementById('modalTitle').value = currentTitle;
+            document.getElementById('currentPptId').value = pptId;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        
+        // 关闭编辑模态框
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+        
+        // 保存标题更改
+        function saveTitle() {
+            const newTitle = document.getElementById('modalTitle').value;
+            if (newTitle.trim() === '') {
+                alert('标题不能为空');
+                return;
+            }
+            
+            document.getElementById(`ppt-title-${currentEditId}`).textContent = newTitle;
+            closeEditModal();
+            
+            // 在实际应用中，这里应该向服务器发送请求保存更改
+            console.log(`PPT ${currentEditId} 标题已更新为: ${newTitle}`);
+        }
+        
+        // 上传PPT功能（模拟）
+        function uploadPPT(pptId) {
+            // 在实际应用中，这里应该打开文件选择器并上传文件到服务器
+            // 这里我们只是模拟上传过程
+            const btn = event.target.closest('.upload-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 上传中...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> 上传成功';
+                alert(`PPT ${pptId} 上传成功！在实际应用中，文件将被上传到服务器。`);
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+        
+        // 处理联系表单提交
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 收集表单数据
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                interest: document.getElementById('interest').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 在实际应用中，这里应该向服务器发送数据
+            console.log('客户信息已提交:', formData);
+            
+            // 显示成功消息
+            alert('感谢您的提交！我们的团队将在1-2个工作日内与您联系。');
+            
+            // 重置表单
+            document.getElementById('contactForm').reset();
+        });
+        
+        // 关闭模态框当点击外部区域
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('editModal');
+            if (e.target === modal) {
+                closeEditModal();
+            }
+        });
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
